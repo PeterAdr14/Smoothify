@@ -19,8 +19,9 @@ let allergy: string[] = [];
 let preference: string[] = [];
 let ingredients: string[] = [];
 
+// Requires your key
 const apikey =
-  "sk-Itn81kYl4y4DSrrKpofJWZ3oha0af3CyCeXCSExm16T3BlbkFJ5yuiOdYimT5sSFJlNF91uzYeUI4M_1ZCOITGju8NgA";
+  "YOUR INDIVIDUAL API KEY FOR OPEN AI";
 
 const recieveInfo = () => {
   allergy = confirmAllergies();
@@ -109,7 +110,7 @@ export default function Generate() {
     const id = IdCheck();
     const uid = UidCheck();
     const url =
-      "https://profile-recipe-755357171976.us-west1.run.app/create/recipe/" +
+      "YOUR DATABASE ENDPOINT/create/recipe/" +
       id;
 
     const body = {
