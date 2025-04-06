@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -14,7 +15,18 @@ var DB *gorm.DB
 
 func SetupDatabase() {
 	godotenv.Load()
-	connection := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=true", os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_HOST"), os.Getenv("DB_PORT"), os.Getenv("DB_DATABASE"))
-	db, _ := gorm.Open(mysql.Open(connection), &gorm.Config{NamingStrategy: schema.NamingStrategy{SingularTable: true}})
+	log.Printf("user: %s, instance: %s, port: %s, database: %s",  os.Getenv("DB_USER"), os.Getenv("DB_INSTANCE"), os.Getenv("DB_PORT"), os.Getenv("DB_DATABASE"))
+	connection := fmt.Sprintf("%s:%s@unix(/cloudsql/%s)/%s?parseTime=true",
+    os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_INSTANCE"), os.Getenv("DB_DATABASE"))
+    
+    db, err := gorm.Open(mysql.Open(connection), &gorm.Config{
+		NamingStrategy: schema.NamingStrategy{SingularTable: true},
+	})
+    
+	if err != nil {
+		log.Printf("Failed to connect to database: %v", err)
+		return
+	}
 	DB = db
+	log.Println("db: connected")
 }
