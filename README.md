@@ -12,6 +12,7 @@
   - (tabs) contains index.tsx, generate.tsx, and profile.tsx in addition to the layout file
   - index.tsx is the default page
   - The subpages are handled using states in the individual pages
+  - Reoccurring custom components are kept in the components folder
   - Within generate.tsx and profile.tsx
     - Google Cloud Platform APIs for GET, POST, and DELETE operations
     - Open AI API call (generate only)
