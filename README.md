@@ -44,4 +44,8 @@ Note: I have found the best way to create a Cloud Run function is through termin
 - modules
   - This outlines the objects containing the columns for the information taken from the database
 - router
-  - This sets the routes for each database operation 
+  - This sets the routes for each database operation
+ 
+
+### Personal Experience:
+Overall, this project was a fantastic experience for me. It let me explore some tools I had minimal time working with, like React Native, or languages that I have never worked with before, like Golang. The most time-consuming part for me was learning how the Google Cloud Platform operates, as well as learning the Go language for database functions. React Native has a plethora of components and tools available for you that allow for a lot of freedom to build Smoothify how I wanted to.
