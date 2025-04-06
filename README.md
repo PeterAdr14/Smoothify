@@ -19,6 +19,15 @@
     - Apple Authentication call (profile only)
 
 ### Backend: (Google Cloud Platform: Golang)
+Note: I have found the best way to create a Cloud Run function is through terminal operations
+- Upload a zip into a bucket (can be done with  the Cloud Bucket page)
+  - gsutil cp ./archive.zip gs://[BUCKET_NAME]/
+- Deploy to Cloud Run from zip (must be done with command)
+  - gcloud run deploy [SERVICE_NAME] \
+    --source gs://[BUCKET_NAME]/archive.zip \
+    --region [YOUR REGION] \
+    --allow-unauthenticated
+
 - Using a single Cloud Run function for each database operation
 - config
   - Establishes the database connection from .env login information
