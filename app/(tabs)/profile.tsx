@@ -87,7 +87,7 @@ export default function Profile() {
   async function login(user: string) {
     console.log("enter login");
     const url =
-      "https://profile-recipe-755357171976.us-west1.run.app/get/recipes/" +
+      "YOUR DATABASE ENDPOINT/get/recipes/" +
       user;
     console.log(url);
     try {
@@ -117,7 +117,7 @@ export default function Profile() {
 
   async function refreshList(user: string) {
     const url =
-      "https://profile-recipe-755357171976.us-west1.run.app/get/recipes/" +
+      "YOUR DATABASE ENDPOINT/get/recipes/" +
       user;
     console.log(url);
     try {
@@ -144,7 +144,7 @@ export default function Profile() {
   async function deleteRecipe(user: string, recipe_id: string) {
     console.log("Enter Delete");
     const url =
-      "https://profile-recipe-755357171976.us-west1.run.app/delete/recipe/" +
+      "YOUR DATABASE ENDPOINT/delete/recipe/" +
       user +
       "/" +
       recipe_id;
@@ -171,7 +171,7 @@ export default function Profile() {
   async function newUser(id: string, account: string | null) {
     console.log("new user entered");
     const url =
-      "https://profile-recipe-755357171976.us-west1.run.app/create/user";
+      "YOUR DATABASE ENDPOINT/create/user";
 
     const body = {
       user: id,
@@ -326,6 +326,8 @@ export default function Profile() {
               console.log(credential.user);
               let val = await login(credential.user);
               console.log(val);
+
+              //Create a new user
               if (!val) {
                 console.log("new user");
                 val = await newUser(credential.user, credential.email);
