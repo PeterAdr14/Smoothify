@@ -16,6 +16,7 @@
   - Within generate.tsx and profile.tsx
     - Google Cloud Platform APIs for GET, POST, and DELETE operations
     - Open AI API call (generate only)
+      - Open AI API should be called in the backend, but this iteration of the app has it in the frontend
     - Apple Authentication call (profile only)
 
 ### Backend: (Google Cloud Platform: Golang)
