@@ -22,7 +22,7 @@
 Note: I have found the best way to create a Cloud Run function is through terminal operations
 - Upload a zip into a bucket (can be done with  the Cloud Bucket page)
   - gsutil cp ./archive.zip gs://[BUCKET_NAME]/
-- Deploy to Cloud Run from zip (must be done with command)
+- Deploy to Cloud Run from zip (must be done with the command)
   - gcloud run deploy [SERVICE_NAME] \
     --source gs://[BUCKET_NAME]/archive.zip \
     --region [YOUR REGION] \
@@ -48,4 +48,4 @@ Note: I have found the best way to create a Cloud Run function is through termin
  
 
 ### Personal Experience:
-Overall, this project was a fantastic experience for me. It let me explore some tools I had minimal time working with, like React Native, or languages that I have never worked with before, like Golang. The most time-consuming part for me was learning how the Google Cloud Platform operates, as well as learning the Go language for database functions. React Native has a plethora of components and tools available for you that allow for a lot of freedom to build Smoothify how I wanted to.
+Overall, this project was a fantastic experience for me. It let me explore some tools I had minimal time working with, like React Native, or languages that I have never worked with before, like Golang. The most time-consuming part for me was learning how the Google Cloud Platform operates, as well as learning the Go language for database functions. React Native has a plethora of components and tools available for you that allow for a lot of freedom to build Smoothify in the way I envisioned. 
