@@ -19,26 +19,31 @@ let status = false;
 let ID = "";
 let UID = 0;
 
+//Check to make sure the user is logged in
 export const signInCheck = () => {
   console.log(status);
   return status;
 };
 
+//Returns the ID string provided by Apple
 export const IdCheck = () => {
   console.log(ID);
   return ID;
 };
 
+//Returns the UID number provided by the database
 export const UidCheck = () => {
   console.log(UID);
   return UID;
 };
 
+//Exports refresh recipe list call (actual refresh later)
 export const refreshing = () => {
   refresh = !refresh;
   console.log("refresh: " + refresh);
 };
 
+//Profile function
 export default function Profile() {
   const [inCredits, setPage] = useState(false);
   const [inRecipe, setView] = useState(false);
@@ -46,6 +51,7 @@ export default function Profile() {
   const [spot, setIndex] = useState(Number);
   const [isSignedIn, setStatus] = useState(false);
 
+  //Alert to confirm sign out
   const signOutAlert = () =>
     Alert.alert("Sign Out", "Sign out of your Smoothify account?", [
       {
@@ -56,6 +62,7 @@ export default function Profile() {
       { text: "Confirm", onPress: () => statusChange() },
     ]);
 
+  //Allert to confirm deleting a recipe
   const deleteRecipeAlert = (recipe_id: string) =>
     Alert.alert("Delete Recipe", "Delete this Recipe?", [
       {
@@ -69,6 +76,7 @@ export default function Profile() {
       },
     ]);
 
+  //Removing recipe from app recipe list
   const handleRemoveRecipe = (index: number) => {
     let itemsCopy = recipes;
     itemsCopy.splice(index, 0);
@@ -77,6 +85,7 @@ export default function Profile() {
     refreshList(ID);
   };
 
+  //Change sign-in status
   const statusChange = () => {
     console.log("status Changed");
     status = !isSignedIn;
@@ -115,6 +124,7 @@ export default function Profile() {
     return true;
   }
 
+  //Refresh the recipe list
   async function refreshList(user: string) {
     const url =
       "YOUR DATABASE ENDPOINT/get/recipes/" +
@@ -230,6 +240,7 @@ export default function Profile() {
     );
   }
 
+  //Retrieves the index of the local recipe list
   const retrieve = (index: number) => {
     console.log(index);
     setIndex(index);
