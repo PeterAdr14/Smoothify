@@ -32,11 +32,12 @@ const flavorList = [
   "Sour",
   "Nutty",
   "Veggie",
-  "High-Protien",
+  "High-Protein",
   "Low-Calorie",
   "Milkshake",
 ];
 
+//Export the recipe allergies
 export const confirmAllergies = () => {
   finalAllergy = [];
   let inc = 0;
@@ -49,10 +50,12 @@ export const confirmAllergies = () => {
   return finalAllergy;
 };
 
+//Export the recipe ingredient list
 export const confirmIngredients = () => {
   return finalIngredients;
 };
 
+//Export the recipe preferences
 export const confirmPreferences = () => {
   finalPreferences = [];
   if (setPreferences[0] == true) {
@@ -64,13 +67,18 @@ export const confirmPreferences = () => {
   return finalPreferences;
 };
 
+// Index Function
 export default function Index() {
+  //Allergy list state
   const [allergies, updateAllergy] = useState([true, true, true, true, true]);
+  //Preference list state
   const [preference, updatePreference] = useState([true]);
-
+  //Individual ingredient
   const [ingredient, setIngredient] = useState("");
+  //Ingredients list
   const [ingItems, setIngItems] = useState(["Fruit"]);
 
+  //Changes toggle/button based on value
   const changeToggle = (input: number, type: String) => {
     if (type == "A") {
       updateAllergy((prev) =>
@@ -85,6 +93,7 @@ export default function Index() {
     }
   };
 
+  //Adding new ingredient to list
   const handleAddIng = () => {
     Keyboard.dismiss();
     if (ingredient.length != 0) {
@@ -94,6 +103,7 @@ export default function Index() {
     }
   };
 
+  //Removing ingredient from list
   const handleRemoveIng = (index: number) => {
     let itemsCopy = [...ingItems];
     itemsCopy.splice(index, 1);
@@ -101,10 +111,12 @@ export default function Index() {
     finalIngredients = itemsCopy;
   };
 
+  //Confirming flavor selection
   const handleDrinkSelect = (value: string) => {
     flavoring = value;
   };
 
+  //Index Main View
   return (
     <ScrollView
       style={styles.container}
