@@ -20,15 +20,18 @@ let preference: string[] = [];
 let ingredients: string[] = [];
 
 // Requires your key
+// This should not be stored on the app, this process should be on the backend
 const apikey =
-  "YOUR INDIVIDUAL API KEY FOR OPEN AI";
+  "YOUR API KEY FOR OPEN AI";
 
+//Calls user recipe information from index.tsx
 const recieveInfo = () => {
   allergy = confirmAllergies();
   preference = confirmPreferences();
   ingredients = confirmIngredients();
 };
 
+//Selects the template based on flavor profile
 const getTemplate = (value: string) => {
   if (value == "Sour") {
     return "https://www.allrecipes.com/recipe/235998/sour-smoothie/";
@@ -47,11 +50,16 @@ const getTemplate = (value: string) => {
   }
 };
 
+// GENERATE PAGE 
 export default function Generate() {
+  //Show generated recipe
   const [text, setText] = useState("");
+  //Shows savable text after recipe is generated
   const [savable, setSavable] = useState("");
+  //Toggle loading screen
   const [isLoading, setIsLoading] = useState(false);
 
+  //Checks to see if the user is signed in before prompting to save
   const find_status = () => {
     if (signInCheck() == true) {
       titleAlert();
@@ -60,6 +68,7 @@ export default function Generate() {
     }
   };
 
+  //Convert allergies to format for database
   const formatAllergy = (selected: string | string[]) => {
     const allAllergies = ["Soy", "Milk", "Sesame", "Peanuts", "Tree Nuts"];
 
@@ -73,6 +82,7 @@ export default function Generate() {
     return JSON.stringify({ allergies: allergiesObj });
   };
 
+  //Convert preferences to format for database
   const formatPreference = (selected: String[]) => {
     const preferenceObj = {
       quantity: selected[0] || "Default",
@@ -82,6 +92,7 @@ export default function Generate() {
     return JSON.stringify({ preference: preferenceObj });
   };
 
+  //Alert for titling and saving a recipe
   const titleAlert = () => {
     Alert.prompt("Title your smoothie!", "Please enter a title", [
       {
@@ -96,6 +107,7 @@ export default function Generate() {
     ]);
   };
 
+  //Alert for attempting to save without an account
   const noSignInAlert = () => {
     Alert.alert("Not Signed In", "Please sign in on the Profile page", [
       {
@@ -106,6 +118,7 @@ export default function Generate() {
     ]);
   };
 
+  //Database operation for saving recipe
   async function newRecipe(title: string | undefined) {
     const id = IdCheck();
     const uid = UidCheck();
@@ -139,6 +152,7 @@ export default function Generate() {
     return;
   }
 
+  //Create the openAI connection
   const openAI = axios.create({
     baseURL: "https://api.openai.com/v1",
     headers: {
@@ -147,11 +161,13 @@ export default function Generate() {
     },
   });
 
+  //Handles OpenAI api call and response
   const handleSend = async () => {
     recieveInfo();
     let prompt = "";
     let template = getTemplate(preference[1]);
     setIsLoading(true);
+    //Set up the prompt for Open AI call
     if (allergy.length == 0 && ingredients.length == 0) {
       prompt = `Write me a smoothie recipe using  ${template} as a base. I want a ${preference} smoothie. Please don't use Markdown formatting. The recipe should have ingredients and instructions sections`;
     } else if (ingredients.length == 0) {
@@ -187,6 +203,7 @@ export default function Generate() {
     }
   };
 
+  //Loading Screen
   if (isLoading) {
     return (
       <SafeAreaView style={styles.loadContainer}>
@@ -199,6 +216,7 @@ export default function Generate() {
     );
   }
 
+  //Main Page View
   return (
     <ScrollView style={styles.container}>
       <View style={styles.genWrapper}>
