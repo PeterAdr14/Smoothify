@@ -1,4 +1,4 @@
-# Smoothify
+# [Smoothify](https://apps.apple.com/us/app/smoothify/id6736921004)
 
 ## The basis for the code is through React Native using the Expo simulator: [Create Expo app page](https://docs.expo.dev/tutorial/create-your-first-app/)
 
