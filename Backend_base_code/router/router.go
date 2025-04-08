@@ -17,7 +17,6 @@ func SetupRouter() {
 	router.Use(cors.New(corsConfig))
 	router.Group("/get").
 		GET("/recipes/:user_id", productController.Get)
-
 	createGroup := router.Group("/create")
 	{
 		createGroup.POST("/recipe/:user_id", productController.Create_Recipe)
