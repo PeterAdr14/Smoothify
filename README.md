@@ -4,6 +4,9 @@
 
 ## Note: This app works for iOS, but remains untested for Android
 
+### Overview:
+This is the basis for the Smoothify app. As such, this app takes in the user's allergies, preferences, and ingredients and generates a recipe using ChatGPT. The prompt for ChatGPT includes a template based on the flavor profile the user has chosen. These templates I use are general recipes found on pages like Allrecipes, but the generated recipes will vary widely depending on the template. Something to keep in mind, since ChatGPT is used to make the recipes, I provide a disclaimer to the user to review the recipe due to the possibility of hallucinations or an accidental inclusion of an allergy into the recipe.
+
 ### Frontend: (React Native: Javascript, Typescript)
 - The screen layout is defined at its base through ./_layout.tsx
 - The app utilizes tab navigation, which is defined in ./(tabs)/_layout.tsx
